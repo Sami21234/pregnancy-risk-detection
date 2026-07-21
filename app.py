@@ -23,4 +23,109 @@ st.write(       # Discription
 
 st.divider()
 
+# Now creating the tabs
+tab1, tab2, tab3 = st.tabs(
+    [
+        "🩺 Vitals",
+        "📊 Health Metrics",
+        "📋 Medical History"
+    ]
+)
 
+# tab1 -- Vitals
+with tab1:
+
+    age = st.slider(
+        "Age",
+        min_value = 10,
+        max_value = 65,
+        value = 25
+    )
+
+    systolic_bp = st.slider(
+        "Systolic BP",
+        min_value = 70,
+        max_value = 200,
+        value = 120
+    )
+
+    diastolic_bp = st.slider(
+        "Systolic BP",
+        min_value = 40,
+        max_value = 140,
+        value = 80
+    )
+
+    body_temp = st.slider(
+        "Body Temperature",
+        min_value = 97,
+        max_value = 103,
+        value = 98
+    )
+
+    heart_rate = st.slider(
+        "Heart Rate",
+        min_value = 58,
+        max_value = 92,
+        value = 76
+    )
+
+    """
+    Because these are numerical values with known ranges from dataset, 
+    from EDA, got the Minimum and Maximum.
+    """
+
+# tab2 -- Health Metrics
+with tab2:
+
+    blood_sugar = st.slider(
+        "Blood Sugar (BS)",
+        min_value = 3.0,
+        max_value = 19.0,
+        value = 7.0,
+        step = 0.1
+    )
+
+    bmi = st.slider(
+        "BMI",
+        min_value = 0.0,
+        max_value = 37.0,
+        value = 23.0,
+        step = 0.1      # Because Blood Sugar and BMI are floating-point values (with it --> 6.0, 6.1, 6.2...).
+    )
+
+    mental_health = st.selectbox(
+        "Mental Health Issue",
+        [0, 1],
+        format_func = lambda x: "Yes" if x == 1 else "No"
+    )
+
+# tab3 -- Medical History
+
+with tab3:
+
+    previous_complications = st.selectbox(
+        "Previous Complications",
+        [0, 1],
+        fromat_func = lambda x: "Yes" if x == 1 else "No"
+    )
+
+    preexisting_diabetes = st.selectbox(
+        "Preexisting Diabetes",
+        [0, 1],
+        format_func= lambda x: "Yes" if x == 1 else "No"
+    )
+
+    gestational_diabetes = st.selectbox(
+        "Gestational Diabetes",
+        [0, 1],
+        format_func = lambda x: "Yes" if x == 1 else "No"
+    )
+
+    """
+    Sliders and select boxes prevent invalid inputs.
+
+    """
+
+
+    
