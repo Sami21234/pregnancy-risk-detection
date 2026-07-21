@@ -127,5 +127,41 @@ with tab3:
 
     """
 
+# Now, making the predictions
 
-    
+predict_button = st.button("🔍 Predict Risk Level")
+
+# Now, Creating the Input DataFrame (converting the inputs into the DataFrame via pandas)
+
+if predict_button:
+
+    input_data = pd.DataFrame({
+        "Age": [age],
+        "Systolic BP": [systolic_bp],
+        "Diastolic": [diastolic_bp],
+        "BS": [blood_sugar],
+        "Body Temp": [body_temp],
+        "BMI": [bmi],
+        "Previous Complications": [previous_complications],
+        "Preexisting Diabetes": [preexisting_diabetes],
+        "Gestational Diabetes": [gestational_diabetes],
+        "Mental Health": [mental_health],
+        "Heart Rate": [heart_rate]
+    })
+
+    # Now, before predicting checking the input
+    st.subheader("Patient Information")
+    st.dataframe(input_data)
+
+    # Now, predicting
+    prediction = model.predict(input_data)
+    prediction = prediction[0]      # It gives now the label as --> Prediction = High or Low
+
+    # Now, showing the result
+    st.subheader("Prediction")
+
+    if prediction == "High":
+        st.error("⚠️ High Risk Pregnancy")
+
+    else:
+        st.success("✅ Low Risk Pregnancy")
