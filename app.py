@@ -13,6 +13,14 @@ st.set_page_config(
 with open("models/pregnancy_risk_detector.pkl", "rb") as file:     # using with open, automatically closes it after reading it.
     model = pickle.load(file)
 
+# Load Standard Scaler
+with open("models/scaler.pkl", "rb") as file:
+    scaler = pickle.load(file)
+
+# Load Simple Imputer
+with open("models/imputer.pkl", "rb") as file:
+    imputer = pickle.load(file)
+
 st.title("🤰 Pregnancy Risk Detector")
 st.write(       # Discription
     """
@@ -50,7 +58,7 @@ with tab1:
     )
 
     diastolic_bp = st.slider(
-        "Systolic BP",
+        "Diastolic BP",
         min_value = 40,
         max_value = 140,
         value = 80
@@ -107,7 +115,7 @@ with tab3:
     previous_complications = st.selectbox(
         "Previous Complications",
         [0, 1],
-        fromat_func = lambda x: "Yes" if x == 1 else "No"
+        format_func = lambda x: "Yes" if x == 1 else "No"
     )
 
     preexisting_diabetes = st.selectbox(
@@ -150,12 +158,22 @@ if predict_button:
     })
 
     # Now, before predicting checking the input
-    st.subheader("Patient Information")
-    st.dataframe(input_data)
+    with st.subheader("View Patient Information:"):
+        st.dataframe(input_data)
 
-    # Now, predicting
-    prediction = model.predict(input_data)
-    prediction = prediction[0]      # It gives now the label as --> Prediction = High or Low
+    # Now, Preprocessing
+   
+    # Fill missing values using the learned medians
+    input_data = imputer.transform(input_data)
+
+    # Scale using the learned mean and standard deviation
+    input_data = scaler.transform(input_data)
+
+    # Prediction
+    prediction = model.predict(input_data)[0]       # It gives now the label as --> Prediction = High or Low
+
+    # Confidence
+    confidence = model.predict_proba(input_data).max() * 100
 
     # Now, showing the result
     st.subheader("Prediction")
@@ -165,3 +183,8 @@ if predict_button:
 
     else:
         st.success("✅ Low Risk Pregnancy")
+
+    st.metric(
+        "Prediction Confidence",
+        f"{confidence:.2f}%"
+    )
