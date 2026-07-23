@@ -1,0 +1,50 @@
+/* Main App */
+.main {
+    padding-top: 1rem;
+}
+
+/* Buttons */
+.stButton > button{
+    width:100%;
+    height:55px;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Metric Cards */
+
+div[data-testid="metric-container"]{
+    border:1px solid rgba(128,128,128,.25);
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 2px 12px rgba(0,0,0,.12);
+}
+
+/* Sidebar */
+
+/* section[data-testid="stSidebar"]{
+    background:#f7f7f7;
+    color: #000000;
+} */
+
+/* Sidebar text */
+/* 
+section[data-testid="stSidebar"] *{
+    color:#000000 !important;
+} */
+
+/* Tabs */
+
+button[data-baseweb="tab"]{
+
+    font-size:16px;
+
+    font-weight:600;
+}
+
+/* Dataframe */
+
+div[data-testid="stDataFrame"]{
+    border-radius:12px;
+}
