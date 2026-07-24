@@ -35,7 +35,7 @@ The trained Random Forest model is deployed using **Streamlit**, allowing users 
 **Streamlit App**
 
 ```
-https://your-streamlit-app.streamlit.app
+https://pregnancy-risk-detection.streamlit.app/
 ```
 
 ---
