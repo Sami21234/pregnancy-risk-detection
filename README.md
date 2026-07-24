@@ -51,7 +51,11 @@ https://your-streamlit-app.streamlit.app
 ## Prediction Result
 ### Demo
 
+https://github.com/user-attachments/assets/23cd087a-54a8-4e45-bfe2-e4694880fec0
 
+---
+
+https://github.com/user-attachments/assets/b5dca398-674b-48e4-a6c1-c2d63a9be822
 
 ---
 
